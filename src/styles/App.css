@@ -1,0 +1,70 @@
+footer {
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
+  height: 5%;
+}
+
+.App {
+  text-align: center;
+}
+
+.form-text-mute {
+  color: rgb(153, 153, 153)!important;
+}
+
+.overflow-scroll {
+  overflow-y: scroll;
+}
+
+.data-area-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly
+}
+
+.logo {
+  height: 60px;
+}
+
+.navbarButton {
+  background-color: #414141 !important;
+  padding: .5rem 1rem !important;
+}
+
+.navbarStyle {
+  padding: .5rem 1rem !important;
+  border-bottom: 2px solid #DC3248;
+  background-color: #1E1E1E;
+}
+
+.table-responsive {
+  max-height: 39rem !important;
+}
+
+.tableColumn {
+  word-break: break-all
+}
+
+.profileButton {
+  background-color: #414141 !important;
+  margin: .5rem .5rem;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #414141!important;
+  --bs-btn-border-color: #414141!important;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #414141!important;
+  --bs-btn-hover-border-color: #414141!important;
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #414141!important;
+  --bs-btn-active-border-color: #414141!important;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #414141!important;
+  --bs-btn-disabled-border-color: #414141!important;
+}
