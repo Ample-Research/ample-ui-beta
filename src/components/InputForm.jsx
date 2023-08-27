@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
+import { sendData } from '../api'
 // import Col from 'react-bootstrap/Col';
 // import Row from 'react-bootstrap/Row';
 
@@ -16,20 +17,20 @@ export const InputForm = ({setSubmitted, redoInputs, setTrainingInfo}) => {
             })
     }
 
-    const readFile = (file) => {
-        const reader = new FileReader();
-        let text;
-        reader.onload = async (e) => { 
-            text = await e.target.result
-            setField('fileContents', text);
-            setField('fileName', file.name);
-          };
-          reader.readAsText(file)
-    }
+    // const readFile = (file) => {
+    //     const reader = new FileReader();
+    //     let text;
+    //     reader.onload = async (e) => { 
+    //         text = await e.target.result
+    //         setField('fileContents', text);
+    //         setField('fileName', file.name);
+    //       };
+    //       reader.readAsText(file)
+    // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //API Call/additional data processing goes here
+    sendData(url, );
     setTrainingInfo(form);
     setSubmitted(true);
   };
@@ -38,9 +39,9 @@ export const InputForm = ({setSubmitted, redoInputs, setTrainingInfo}) => {
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>{form.fileName ? "Upload new document" : "Upload the document on which this model will be based"}</Form.Label>
-            <Form.Control required={!form.fileName} type="file" placeholder={form.fileName} onChange={ e => readFile(e.target.files[0]) }/>
+            <Form.Control required={!form.fileName} type="file" placeholder={form.fileName}/>
             <Form.Text className="form-text-mute">
-                {form.fileContents ? form.fileContents.substring(0, 200) + "..." : "your file will be read as plain text"}
+                {"this must be a .text, .pdf, .csv, or .docx file less than 10mb"}
             </Form.Text>
         </Form.Group>
         <Form.Group className="mb-3" controlId="formTone">
