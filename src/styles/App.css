@@ -7,6 +7,18 @@ footer {
 
 .App {
   text-align: center;
+  background: #212121;;
+}
+
+.container {
+  border-radius: 50px;
+  border: 3px solid #C9424D;
+  background: #1E1E1E;
+}
+
+.loading-bar {
+  border-radius: 10px;
+  border: 1px solid #FDFDFD;
 }
 
 .form-text-mute {
