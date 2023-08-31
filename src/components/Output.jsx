@@ -16,35 +16,34 @@ const  Output = ({trainingInputs, setTrainingInputs}) => {
     }
 
     useEffect(() => {
-        if(Object.values(trainingInputs).length && !Object.values(taskInfo).length){
-            const info = sendData(trainingInputs);
-            setTaskInfo(info);
-            console.log(info)
-            // setTaskInfo({
-            //     id: 'id',
-            //     status: 'complete',
-            //     sections: [
-            //         {status: 'complete'},
-            //         {status: 'complete'},
-            //         {status: 'complete'},
-            //         {status: 'complete'}
-            //     ],
-            //     pairs: 200,
-            //     tags: ['funny', 'terrible', 'bla bla bla']
-            // })
-            // console.log('send training inputs', trainingInputs)
-        } else if (Object.values(taskInfo).length && taskInfo.status !== 'complete'){
-            const info = checkStatus(taskInfo.id);
-            setTaskInfo(info);
-            console.log(info)
-            // console.log('check task status', taskInfo)
-        } else if  (taskInfo.status === 'complete'){
+        let isCancelled = false; // To handle component unmounts
+      
+        const fetchData = async () => {
+          if(Object.values(trainingInputs).length && !Object.values(taskInfo).length){
+            const info = await sendData(trainingInputs);
+            if (!isCancelled) {
+              setTaskInfo(info);
+            }
+          } else if (Object.values(taskInfo).length && taskInfo.status !== 'complete'){
+            const info = await checkStatus(taskInfo.id);
+            if (!isCancelled) {
+              setTaskInfo(info);
+            }
+          } else if (taskInfo.status === 'complete'){
             setTimeout(() => {
-                setDisplayOutputs(true)
-              }, "2000");
-        }
-    },[trainingInputs, setTaskInfo, taskInfo, setDisplayOutputs])
-
+              if (!isCancelled) {
+                setDisplayOutputs(true);
+              }
+            }, 2000);
+          }
+        };
+      
+        fetchData();
+      
+        return () => {
+          isCancelled = true; // Clean up to avoid setting state on an unmounted component
+        };
+      }, [trainingInputs, taskInfo]);
     return (
         <div>
             {taskInfo.status === "complete" && 
