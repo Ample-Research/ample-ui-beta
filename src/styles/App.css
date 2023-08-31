@@ -1,24 +1,139 @@
-footer {
+.App {
+  text-align: center;
+  background: #1E1E1E;
+}
+
+.header {
+  height: 10vh;
+  width: 96vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2vw;
+  padding-left: 2vw;
+  border-bottom: 1px solid #C9424D;
+}
+
+.logo {
+  height: 60px;
+}
+
+.footer {
   position: fixed;
   bottom: 0%;
   width: 100%;
-  height: 5%;
+  height: 5vh;
+  background: #1E1E1E;
 }
 
-.App {
-  text-align: center;
-  background: #212121;;
+.main-content {
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
   border-radius: 50px;
-  border: 3px solid #C9424D;
-  background: #1E1E1E;
+  border: 1px solid #C9424D;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #FDFDFD;
+}
+
+.container-header {
+  width: 300px;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  flex-direction: column;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #FDFDFD;
+}
+
+.form-input-label {
+  width: 300px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.input-file {
+  width: 300px;
+  margin-top: 10px;
+}
+
+input[type=submit] {
+  background-color: #DC3248;
+  color:#FDFDFD;
+  border: none;
+  padding: 8px 8px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+input[type=text] {
+  width: 300px;
+  border-radius: 5px;
+  font-family: monospace;
+}
+
+.input-text-area {
+  height: 150px;
+  border-radius: 10px;
+  width: 300px;
 }
 
 .loading-bar {
   border-radius: 10px;
   border: 1px solid #FDFDFD;
+  height: 30px;
+  width: 300px;
+  display: flex;
+  justify-content: stretch;
+}
+
+.loading-bar-section {
+  height: 100%;
+}
+
+.check-mark {
+  height: 50px;
+}
+
+.meta-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 300px;
+  height: 150px;
+}
+
+.data-tags {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+}
+
+.data-tag {
+  border: 1px solid #FDFDFD;
+  width: max-content;
+  padding: 2px;
+  border-radius: 5px;
+  margin: 2px;
 }
 
 .form-text-mute {
@@ -34,10 +149,6 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly
-}
-
-.logo {
-  height: 60px;
 }
 
 .navbarButton {
