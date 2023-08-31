@@ -3,7 +3,7 @@ import Output from './Output';
 import Input from './Input';
 import SignUp from './SignUp';
 // import { sendData, checkStatus } from '../utils/api';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const  Container = ({loggedIn}) => {
     const [trainingInputs, setTrainingInputs] = useState({})

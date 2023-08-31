@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import logo from '../assets/AmpleLogo.png'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useEffect, useState } from 'react';
 
 const  Header = ({loggedIn}) => {
     

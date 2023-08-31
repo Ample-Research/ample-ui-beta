@@ -2,7 +2,7 @@ import '../styles/App.css';
 import check from '../assets/check.svg';
 import LoadingBar from './LoadingBar';
 import MetaData from './MetaData';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const  Output = ({trainingInputs, setTrainingInputs}) => {
    const [taskInfo, setTaskInfo] = useState({})
@@ -16,27 +16,27 @@ const  Output = ({trainingInputs, setTrainingInputs}) => {
 
     useEffect(() => {
         if(Object.values(trainingInputs).length && !Object.values(taskInfo).length){
-            // const info = sendData(trainingInputs);
-            // setTaskInfo(info);
-            // console.log(info)
-            setTaskInfo({
-                id: 'id',
-                status: 'complete',
-                sections: [
-                    {status: 'complete'},
-                    {status: 'complete'},
-                    {status: 'complete'},
-                    {status: 'complete'}
-                ],
-                pairs: 200,
-                tags: ['funny', 'terrible', 'bla bla bla']
-            })
-            console.log('send training inputs', trainingInputs)
+            const info = sendData(trainingInputs);
+            setTaskInfo(info);
+            console.log(info)
+            // setTaskInfo({
+            //     id: 'id',
+            //     status: 'complete',
+            //     sections: [
+            //         {status: 'complete'},
+            //         {status: 'complete'},
+            //         {status: 'complete'},
+            //         {status: 'complete'}
+            //     ],
+            //     pairs: 200,
+            //     tags: ['funny', 'terrible', 'bla bla bla']
+            // })
+            // console.log('send training inputs', trainingInputs)
         } else if (Object.values(taskInfo).length && taskInfo.status !== 'complete'){
-            // const info = checkStatus(taskInfo.id);
-            // setTaskInfo(info);
-            // console.log(info)
-            console.log('check task status', taskInfo)
+            const info = checkStatus(taskInfo.id);
+            setTaskInfo(info);
+            console.log(info)
+            // console.log('check task status', taskInfo)
         } else if  (taskInfo.status === 'complete'){
             setTimeout(() => {
                 setDisplayOutputs(true)

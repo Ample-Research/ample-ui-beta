@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 
 export const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: "ample-ai.firebaseapp.com",
     projectId: "ample-ai",
     storageBucket: "ample-ai.appspot.com",
@@ -16,7 +16,10 @@ export const uiConfig = {
         return true;
       },
       uiShown: function() {
-        document.getElementById('loader').style.display = 'none';
+        const loader = document.getElementById('loader');
+        if (loader) {
+          loader.style.display = 'none';
+        }
       }
     },
     signInFlow: 'popup',
