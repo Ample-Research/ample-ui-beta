@@ -17,8 +17,10 @@ const Input = ({setTrainingInputs}) => {
     <form className="input-form" onSubmit={handleSubmit(onSubmit)}>
       <input required className="input-text" {...register("title")} type="text" placeholder="TITLE"/>
       <input required  className="input-file" {...register("file")} type="file" />
+      <br/>
       <label className="form-input-label">QUESTION PROMPT</label>
       <textarea required  className="input-text-area" {...register("questionPrompt")} value={qDefault}/>
+      <br/>
       <label className="form-input-label">ANSWER PROMPT</label>
       <textarea required  className="input-text-area" {...register("answerPrompt")} value={aDefault}/>
       <input type="submit"/>

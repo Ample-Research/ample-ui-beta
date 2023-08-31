@@ -17,22 +17,22 @@ export const sendData = async (file, data, userId) => {
     return taskInfo;
   }
 
-  // const transFormData = (data, userId) => {
-  //   const newData = {...data}
-  //   delete newData.fileName;
-  //   newData.user_id = userId;
-  //   newData.tags = data.tags.split(",")
-  //   Object.keys(newData).forEach(k => {
-  //     if(k.startsWith('q') || (k.startsWith('a') && k !== "answer_tone")){
-  //       delete newData[k]
-  //     }
-  //   })
-  //   newData.QA_examples = [[data.q1, data.a1], [data.q2, data.a2],[data.q3, data.a3]]
-  //   newData.model_name = "gpt-3.5-turbo";
-  //   newData.start_sequence = "\n\n###\n\n";
-  //   newData.stop_sequence = "###";
-  //   return JSON.stringify(newData)
-  // }
+  const transFormData = (data, userId) => {
+    const newData = {...data}
+    // delete newData.fileName;
+    // newData.user_id = userId;
+    // newData.tags = data.tags.split(",")
+    // Object.keys(newData).forEach(k => {
+    //   if(k.startsWith('q') || (k.startsWith('a') && k !== "answer_tone")){
+    //     delete newData[k]
+    //   }
+    // })
+    // newData.QA_examples = [[data.q1, data.a1], [data.q2, data.a2],[data.q3, data.a3]]
+    // newData.model_name = "gpt-3.5-turbo";
+    // newData.start_sequence = "\n\n###\n\n";
+    // newData.stop_sequence = "###";
+    return JSON.stringify(newData)
+  }
 
   export const checkStatus = async (id) => {
     console.log('checking status')

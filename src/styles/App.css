@@ -37,8 +37,8 @@
 .container {
   border-radius: 50px;
   border: 1px solid #C9424D;
-  width: 400px;
-  height: 500px;
+  width: 50vw;
+  padding: 2%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +47,7 @@
 }
 
 .container-header {
-  width: 300px;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   text-align: left;
@@ -55,6 +55,7 @@
 }
 
 .input-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,13 +64,15 @@
 }
 
 .form-input-label {
-  width: 300px;
+  width: 100%;
   text-align: left;
   margin-top: 10px;
+  font-size: 20px;
+  margin: 10px;
 }
 
 .input-file {
-  width: 300px;
+  width: 100%;
   margin-top: 10px;
 }
 
@@ -77,15 +80,18 @@ input[type=submit] {
   background-color: #DC3248;
   color:#FDFDFD;
   border: none;
-  padding: 8px 8px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
   text-decoration: none;
-  margin: 4px 2px;
+  margin: 15px;
   cursor: pointer;
-  margin-top: 5px;
+  width: 80%;
+  border-radius: 5px;
 }
 
 input[type=text] {
-  width: 300px;
+  width: 100%;
   border-radius: 5px;
   font-family: monospace;
 }
@@ -93,7 +99,14 @@ input[type=text] {
 .input-text-area {
   height: 150px;
   border-radius: 10px;
-  width: 300px;
+  width: 95%;
+  padding: 15px;
+}
+
+.input-text {
+  width: 100%;
+  padding: 5px;
+  font-size: 20px;
 }
 
 .loading-bar {

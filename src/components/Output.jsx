@@ -3,6 +3,7 @@ import check from '../assets/check.svg';
 import LoadingBar from './LoadingBar';
 import MetaData from './MetaData';
 import React, { useEffect, useState } from 'react';
+import { sendData, checkStatus } from '../utils/api';
 
 const  Output = ({trainingInputs, setTrainingInputs}) => {
    const [taskInfo, setTaskInfo] = useState({})
