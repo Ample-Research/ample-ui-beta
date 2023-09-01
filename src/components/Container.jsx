@@ -2,7 +2,7 @@ import '../styles/App.css';
 import Output from './Output';
 import Input from './Input';
 // import { sendData, checkStatus } from '../utils/api';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const  Container = ({loggedIn}) => {
     const [trainingInputs, setTrainingInputs] = useState({})

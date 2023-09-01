@@ -1,6 +1,4 @@
 import '../styles/App.css';
-import Header from './Header';
-import Footer from './Footer';
 import AuthComponent from './SignIn';
 import ProtectedComponent from './ProtectedComponent';
 import AuthContext from './AuthContext';

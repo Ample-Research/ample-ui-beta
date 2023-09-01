@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const  Output = ({trainingInputs, setTrainingInputs}) => {
    const [taskInfo, setTaskInfo] = useState({})
    const [displayOutputs, setDisplayOutputs] = useState(false)
-   const tags = () => taskInfo.tags.map(t => <p key={'tag-' + t}  className="data-tag">{t}</p>)
+//    const tags = () => taskInfo.tags.map(t => <p key={'tag-' + t}  className="data-tag">{t}</p>)
    
    const clear = () => {
         setTaskInfo({})
