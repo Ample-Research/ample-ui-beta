@@ -1,15 +1,22 @@
 import '../styles/App.css';
 import logo from '../assets/AmpleLogo.png'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import React, { useEffect, useState } from 'react';
+import { getAuth, signOut } from "firebase/auth";
 
-const  Header = ({loggedIn}) => {
-    
+const  Header = ({user}) => {
+    const auth = getAuth();
+
+const logout = () => 
+    signOut(auth).then(() => {
+    }).catch((error) => {
+        console.log(error)
+    });
 
     return (
         <div className="header">
-            <img className="logo" src={logo} alt="Ample logo. The word Ample in red followed by three white hexagon outlines."/>
-            <button>{loggedIn ? "logout" : "login"}</button>
+            <a href="https://www.ample-research.com/"><img className="logo" src={logo} alt="Ample logo. The word Ample in red followed by three white hexagon outlines."/></a>
+            {user &&
+                <button onClick={logout}>logout</button>
+            }
         </div>
     );
 }

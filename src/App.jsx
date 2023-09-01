@@ -1,31 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
+import AuthProvider from './components/AuthProvider';
 import './styles/App.css';
-import React, { useEffect, useState } from 'react';
-import  {firebaseConfig, uiConfig} from "./utils/firebaseconfig"
-import firebase from 'firebase/compat/app';
+import PageLayout from './components/PageLayout';
+import Text from './components/Text';
+import { privacyPolicy } from './data/privacyPolicy';
+import { termsOfUse } from './data/termsOfUse';
 
-if (!firebase.apps.length) {
-    console.log("Init Firebase")
-    firebase.initializeApp(firebaseConfig);
-}
-
-const App = () => {
-    console.log('RENDERED')
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    useEffect(() => {
-        const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-          setLoggedIn(!!user);
-        });
-        return () => unregisterAuthObserver();
-      }, []);
+const  App = () => {
 
     return (
-        <Routes>
-            <Route path="/" element={<Home loggedIn={false} uiConfig={uiConfig} />} />
-            <Route path="/signedIn" element={<Home loggedIn={true}/>} />
-        </Routes>
+        <AuthProvider>
+            <Routes>
+                <Route path="/" element={<PageLayout><Home/></PageLayout>} />
+                <Route path="/privacypolicy" element={<PageLayout><Text content={privacyPolicy}/></PageLayout>} />
+                <Route path="/termsofuse" element={<PageLayout><Text content={termsOfUse}/></PageLayout>} />
+            </Routes>
+        </AuthProvider>
     );
 }
 
