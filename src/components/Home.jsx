@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/App.css';
 import AuthComponent from './SignIn';
 import ProtectedComponent from './ProtectedComponent';
