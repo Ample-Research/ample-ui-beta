@@ -8,7 +8,7 @@ import { sendData, checkStatus } from '../utils/api';
 const  Output = ({trainingInputs, setTrainingInputs}) => {
    const [taskInfo, setTaskInfo] = useState({})
    const [displayOutputs, setDisplayOutputs] = useState(false)
-   const tags = () => taskInfo.tags.map(t => <p key={'tag-' + t}  className="data-tag">{t}</p>)
+//    const tags = () => taskInfo.tags.map(t => <p key={'tag-' + t}  className="data-tag">{t}</p>)
    
    const clear = () => {
         setTaskInfo({})
