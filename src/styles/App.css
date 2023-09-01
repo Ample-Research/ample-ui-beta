@@ -30,8 +30,18 @@
   width: 100vw;
   height: 85vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #FDFDFD;
+}
+
+.scrollable-text-page {
+  height: 80vh;
+  color: #FDFDFD;
+  width: 80vw;
+  overflow-y: scroll;
+  white-space: pre-line;
 }
 
 .container {
