@@ -14,7 +14,7 @@ const logout = () =>
 
     return (
         <div className="header">
-            <a href="ample-research.com"><img className="logo" src={logo} alt="Ample logo. The word Ample in red followed by three white hexagon outlines."/></a>
+            <a href="https://www.ample-research.com/"><img className="logo" src={logo} alt="Ample logo. The word Ample in red followed by three white hexagon outlines."/></a>
             {user &&
                 <button onClick={logout}>logout</button>
             }
