@@ -1,7 +1,6 @@
-// ProtectedComponent.js
 import React from 'react';
 import SignUp from './SignUp';
-import Container from './Container';
+import Container from '../Layout/Container';
 
 const ProtectedComponent = ({user}) => {
   if (user) {

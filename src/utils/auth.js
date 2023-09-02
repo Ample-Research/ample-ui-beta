@@ -1,4 +1,5 @@
 import firebase from "firebase/compat/app";
+import { getAuth, signOut } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -11,6 +12,13 @@ const firebaseConfig = {
   };
 
   
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
+  export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-  export default firebaseApp;
+  const auth = getAuth();
+
+  export const logout = () => 
+    signOut(auth).then(() => {
+  }).catch((error) => {
+      console.log(error)
+  });
+

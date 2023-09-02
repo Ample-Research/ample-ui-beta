@@ -1,21 +1,20 @@
-import '../styles/App.css';
+import '../../styles/App.css';
 
-const  LoadingBar = ({taskInfo}) => {
+const  LoadingBar = ({sections}) => {
+    console.log('update bar comp', sections)
+    const numCompletedSections = sections.filter(s => s === 'completed').length
 
-    const completedSections = taskInfo.sections.filter(s => s.status === 'complete').length;
     
-    const barSections = taskInfo.sections.map((s,i) => {
-        console.log(i, completedSections)
-
+    const barSections = sections.map((s,i) => {
         const first = i === 0;
-        const last = i === taskInfo.sections.length - 1;
-        const sectionDone = i < completedSections;
-        const incompleteTotal  = completedSections < taskInfo.sections.length;
+        const last = i === sections.length - 1;
+        const sectionDone = i < numCompletedSections;
+        const incompleteTotal  = numCompletedSections < sections.length;
 
         return (
         <div key={'section-' + i} 
             style={{
-                width: `${300 / taskInfo.sections.length}px`,
+                width: `${400 / sections.length}px`,
                 borderTopLeftRadius: first ? '10px' : 0,
                 borderBottomLeftRadius: first ? '10px' : 0,
                 borderTopRightRadius: last ? '10px' : 0,

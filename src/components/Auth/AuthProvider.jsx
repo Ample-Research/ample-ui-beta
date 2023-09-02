@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import firebaseApp from '../utils/firebaseconfig';
+import { firebaseApp } from '../../utils/auth';
 import AuthContext from './AuthContext';
 
 const AuthProvider = ({ children }) => {

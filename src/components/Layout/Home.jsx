@@ -1,7 +1,7 @@
-import '../styles/App.css';
-import AuthComponent from './SignIn';
-import ProtectedComponent from './ProtectedComponent';
-import AuthContext from './AuthContext';
+import '../../styles/App.css'
+import AuthComponent from '../Auth/SignIn';
+import ProtectedComponent from '../Auth/ProtectedComponent';
+import AuthContext from '../Auth/AuthContext';
 import { useContext } from 'react';
 
 const  Home = () => {

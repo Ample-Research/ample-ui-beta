@@ -1,0 +1,36 @@
+import '../../styles/App.css';
+import LoadingBar from './LoadingBar';
+import Error from './Error';
+import StatusImage from './StatusImage';
+import OutputDisplay from './OutputDisplay';
+import { useTaskInfo } from '../../hooks/useTaskInfo';
+import isEmpty from 'lodash/isEmpty';
+
+const OutputWrapper = ({ trainingInputs, setTrainingInputs }) => {
+    const [taskInfo, setTaskInfo, error] = useTaskInfo(trainingInputs);
+    console.log('updateTaskInfo', taskInfo)
+
+    const clear = () => {
+        setTaskInfo({});
+        setTrainingInputs({});
+    };
+
+    if (error) {
+        return <Error clear={clear} />;
+    }
+
+    const statusText = taskInfo.status === "completed" ? "TRAINING DATA COMPLETE" : "GENERATING DATA ...";
+    const loadingBarSections = isEmpty(taskInfo.section_tracker) ? [] : Object.values(taskInfo.section_tracker);
+    console.log('updateBarSections', loadingBarSections)
+  
+    return (
+        <div>
+            <StatusImage status={taskInfo.status} />
+            <h3>{statusText}</h3>
+            {taskInfo.status && taskInfo.status !== 'completed' && <LoadingBar sections={loadingBarSections} />}
+            {taskInfo.status === 'completed' && <OutputDisplay taskInfo={taskInfo} clear={clear} />}
+        </div>
+    );
+}
+
+export default OutputWrapper;

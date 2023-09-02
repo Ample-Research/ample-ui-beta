@@ -1,7 +1,7 @@
-import '../styles/App.css';
+import '../../styles/App.css'
 import Header from './Header';
 import Footer from './Footer';
-import AuthContext from './AuthContext';
+import AuthContext from '../Auth/AuthContext';
 import { useContext } from 'react';
 
 const  PageLayout = ({children}) => {

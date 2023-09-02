@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import AuthProvider from './components/AuthProvider';
+import Home from './components/Layout/Home';
+import AuthProvider from './components/Auth/AuthProvider';
 import './styles/App.css';
-import PageLayout from './components/PageLayout';
-import Text from './components/Text';
+import PageLayout from './components/Layout/PageLayout';
+import Text from './components/Layout/Text';
 import { privacyPolicy } from './data/privacyPolicy';
 import { termsOfUse } from './data/termsOfUse';
 
