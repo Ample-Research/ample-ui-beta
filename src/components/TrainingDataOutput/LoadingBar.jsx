@@ -1,7 +1,6 @@
 import '../../styles/App.css';
 
 const  LoadingBar = ({sections}) => {
-    console.log('update bar comp', sections)
     const numCompletedSections = sections.filter(s => s === 'completed').length
 
     

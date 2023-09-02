@@ -8,7 +8,6 @@ import isEmpty from 'lodash/isEmpty';
 
 const OutputWrapper = ({ trainingInputs, setTrainingInputs }) => {
     const [taskInfo, setTaskInfo, error] = useTaskInfo(trainingInputs);
-    console.log('updateTaskInfo', taskInfo)
 
     const clear = () => {
         setTaskInfo({});
@@ -21,7 +20,6 @@ const OutputWrapper = ({ trainingInputs, setTrainingInputs }) => {
 
     const statusText = taskInfo.status === "completed" ? "TRAINING DATA COMPLETE" : "GENERATING DATA ...";
     const loadingBarSections = isEmpty(taskInfo.section_tracker) ? [] : Object.values(taskInfo.section_tracker);
-    console.log('updateBarSections', loadingBarSections)
   
     return (
         <div>

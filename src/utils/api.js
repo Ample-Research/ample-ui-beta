@@ -19,10 +19,7 @@ export const initiateFileProcessing = async (data) => {
 
   formData.append('data', JSON.stringify(jsonPayload));
 
-  console.log(jsonPayload)
-  console.log('URL', baseURL)
   const endpoint = baseURL + v.REACT_APP_INITIATE_FILE_PROCESSING_ENDPOINT + '?code=' + v.REACT_APP_INITIATE_FILE_PROCESSING_CODE
-  console.log('ENDPOINT', endpoint)
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -35,7 +32,6 @@ export const initiateFileProcessing = async (data) => {
     }
 
     const responseData = await response.json();
-    console.log('initiate file processing response', responseData);
     return responseData
   } catch (error) {
     console.error("There was an error initiating file processing:", error);
@@ -56,7 +52,6 @@ export const checkTaskStatus = async (taskId) => {
       throw new Error(`something went wrong: ${response.status}`);
     }
     const responseData = await response.json();
-    console.log('check task status response', responseData);
     return responseData
   } catch (error) {
     console.error("There was an error checking task status:", error);

@@ -9,7 +9,6 @@ export const useTaskInfo = (trainingInputs) => {
   
     useEffect(() => {
         if (!error && !fetchingInProgress && isEmpty(taskInfo)) {
-            console.log('initiate')
             fetchData(initiateFileProcessing, trainingInputs)
                 .then(info => setTaskInfo(info));
         }
@@ -18,7 +17,6 @@ export const useTaskInfo = (trainingInputs) => {
     useEffect(() => {
         if (!error && !fetchingInProgress && !isEmpty(taskInfo) && taskInfo.status !== 'completed') {
             setTimeout(() => {
-                console.log('check task status')
                 fetchData(checkTaskStatus, taskInfo.task_id)
                 .then(info => {
                     if(info.error){
