@@ -1,13 +1,13 @@
 const v = process.env;
 const baseURL = v.REACT_APP_AZURE_FUNCTIONS_BASE_ENDPOINT;
 
-export const initiateFileProcessing = async (data) => {
+export const initiateFileProcessing = async (data, userId) => {
   const formData = new FormData();
   
   formData.append('file', data.file[0]);
   
   const jsonPayload = {
-    user_id: 'dev',
+    user_id: userId,
     title: data.title,
     model_name: "qa-gpt-35-4k-context",
     start_sequence: "\n\n###\n\n",
@@ -38,7 +38,7 @@ export const initiateFileProcessing = async (data) => {
   }
 };
 
-export const checkTaskStatus = async (taskId) => {
+export const checkTaskStatus = async (taskId, userId) => {
   let endpoint = new URL(baseURL + v.REACT_APP_CHECK_TASK_STATUS_ENDPOINT)
   const params = {
     code: v.REACT_APP_CHECK_TASK_STATUS_CODE,
