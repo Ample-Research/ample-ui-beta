@@ -21,6 +21,7 @@ export const initiateFileProcessing = async (data, userId) => {
 
   const endpoint = baseURL + v.REACT_APP_INITIATE_FILE_PROCESSING_ENDPOINT + '?code=' + v.REACT_APP_INITIATE_FILE_PROCESSING_CODE
   try {
+    console.log('initiate API CALL')
     const response = await fetch(endpoint, {
       method: 'POST',
       body: formData,
@@ -47,6 +48,7 @@ export const checkTaskStatus = async (taskId, userId) => {
   Object.keys(params).forEach(key => endpoint.searchParams.append(key, params[key]));//append params to url
 
   try {
+    console.log('check status API CALL')
     const response = await fetch(endpoint);
     if (!response.ok) {
       throw new Error(`something went wrong: ${response.status}`);

@@ -3,6 +3,7 @@ import OutputWrapper from '../TrainingDataOutput/OutputWrapper';
 import InputForm from '../InputForm/InputForm';
 import { useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
+import ContainerHeader from './ContainerHeader';
 
 const  Container = () => {
     const [trainingInputs, setTrainingInputs] = useState({})
@@ -14,10 +15,7 @@ const  Container = () => {
             }
             {!isEmpty(trainingInputs) &&
                 <>
-                    <div className="container-header">
-                        <h4>{trainingInputs.title}</h4>
-                        <p>{trainingInputs.file[0].name + ", " + (trainingInputs.file[0].size / 1000) + 'mb'}</p>
-                    </div>
+                    <ContainerHeader trainingInputs={trainingInputs}/>
                     <OutputWrapper 
                         trainingInputs={trainingInputs}
                         setTrainingInputs={setTrainingInputs}

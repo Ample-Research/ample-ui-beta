@@ -7,6 +7,8 @@ import TextAreaInput from "./TextAreaInput";
 const Input = ({setTrainingInputs}) => {
   const { register, handleSubmit, watch } = useForm();
   const uploadedFile = watch("file");
+  const title = watch("title");
+  const formReady = uploadedFile && title;
   
   const onSubmit = data => {
     setTrainingInputs(data)
@@ -38,7 +40,7 @@ const Input = ({setTrainingInputs}) => {
   return (
     <form className="input-form" onSubmit={handleSubmit(onSubmit)}>
      {formInputs}
-      <input className="red-disabled-button button" type="submit" value="GENERATE TRAINING SET"/>
+      <input disabled={!formReady} className={(formReady ? "red-active-button" : "red-disabled-button") + " button"} type="submit" value="GENERATE TRAINING SET"/>
     </form>
   );
 }
