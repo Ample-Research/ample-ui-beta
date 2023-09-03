@@ -19,8 +19,8 @@ export const useTaskInfo = (trainingInputs) => {
             setTimeout(() => {
                 fetchData(checkTaskStatus, taskInfo.task_id)
                 .then(info => {
-                    if(info.error){
-                        setError(true)
+                    if(info.error_message){
+                        setError(info.error_message)
                     } else {
                         setTaskInfo(info)
                     }

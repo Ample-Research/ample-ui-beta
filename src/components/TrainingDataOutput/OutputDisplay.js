@@ -7,9 +7,9 @@ const OutputDisplay = ({ taskInfo, clear }) => {
             <>
                 <div>
                     <a href={taskInfo.download_link}>
-                        <button className="download-data-button">DOWNLOAD</button>
+                        <button className="red-active-button button">DOWNLOAD</button>
                     </a>
-                    <button className="generate-another-button" onClick={clear}>GENERATE ANOTHER -></button>
+                    <button className="transparent-button button" onClick={clear}>GENERATE ANOTHER -></button>
                 </div>
                 <div className="meta-data">
                     <p>Q&A pairs: <strong>{taskInfo.num_QA_pairs}</strong></p>

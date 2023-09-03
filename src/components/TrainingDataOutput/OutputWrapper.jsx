@@ -22,7 +22,7 @@ const OutputWrapper = ({ trainingInputs, setTrainingInputs }) => {
     const loadingBarSections = isEmpty(taskInfo.section_tracker) ? [] : Object.values(taskInfo.section_tracker);
   
     return (
-        <div>
+        <div className="container-content">
             <StatusImage status={taskInfo.status} />
             <h3>{statusText}</h3>
             {taskInfo.status && taskInfo.status !== 'completed' && <LoadingBar sections={loadingBarSections} />}
