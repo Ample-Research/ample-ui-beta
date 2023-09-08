@@ -34,7 +34,7 @@ jobs:
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
-        env:
+        env: # NEEDS TO BE MOVED TO AZURE
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
           REACT_APP_FIREBASE_AUTH_DOMAIN: "ample-ai.firebaseapp.com"
           REACT_APP_FIREBASE_PROJECT_ID: "ample-ai"
