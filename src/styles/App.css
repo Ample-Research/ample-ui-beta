@@ -14,6 +14,39 @@
   border-bottom: 1px solid #C9424D;
 }
 
+.button {
+  min-width: 150px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: monospace;
+  cursor: pointer;
+}
+
+.transparent-button {
+  border: 1px solid #FDFDFD;
+  background: #212121;
+  color: #FDFDFD;
+}
+
+.transparent-button:hover {
+  border: 1px solid #FFFFFF;
+  background-color: #623035a7;
+}
+
+.red-active-button {
+  background: rgba(201, 66, 77, 0.90);
+  color: #FDFDFD;
+}
+
+.red-disabled-button {
+  background: rgba(138, 71, 76, 0.63);
+  color: #1E1E1E;
+  cursor: default;
+}
+
 .logo {
   height: 60px;
 }
@@ -30,28 +63,62 @@
   width: 100vw;
   height: 85vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  border-radius: 50px;
-  border: 1px solid #C9424D;
-  width: 400px;
-  height: 500px;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #FDFDFD;
 }
 
+.scrollable-text-page {
+  height: 80vh;
+  color: #FDFDFD;
+  width: 80vw;
+  overflow-y: scroll;
+  white-space: pre-line;
+}
+
+.container {
+  border-radius: 50px;
+  border: 1px solid #C9424D;
+  width: 20vw;
+  min-width: 450px;
+  height: 60vh;
+  min-height: 550px;
+  color: #FDFDFD;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .container-header {
-  width: 300px;
+  max-width: 400px;
   display: flex;
   justify-content: flex-start;
   text-align: left;
   flex-direction: column;
+  position: absolute;
+  top: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 10px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.file-name {
+  margin: 0;
+}
+
+.file-info {
+  margin: 0;
 }
 
 .input-form {
@@ -60,32 +127,90 @@
   justify-content: center;
   align-items: center;
   color: #FDFDFD;
+  padding-top: 20px;
+}
+
+
+
+.form-label-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.question-icon {
+  height: 20px;
+  margin-left: 5px;
 }
 
 .form-input-label {
-  width: 300px;
   text-align: left;
-  margin-top: 10px;
+  font-size: large;
+  font-weight: bold;
 }
 
 .input-file {
-  width: 300px;
+  display: none; /* Hide the default file input */
+}
+
+.file-input-section {
+  display: flex;
+  width: 400px;
   margin-top: 10px;
 }
 
-input[type=submit] {
-  background-color: #DC3248;
-  color:#FDFDFD;
-  border: none;
-  padding: 8px 8px;
-  text-decoration: none;
-  margin: 4px 2px;
+.file-upload-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(201, 66, 77, 0.50);
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.upload-btn-wrapper:hover {
+  background-color: rgba(201, 66, 77, 0.60);
+}
+
+.upload-icon {
+  height: 35px;
+}
+
+.upload-success-icon {
+  height: 20px;
+}
+
+.upload-help-text {
+  display: block;
   margin-top: 5px;
+  color: grey;
+  font-size: 12px;
+}
+
+input[type=submit] {
+  margin-top: 10px;
 }
 
 input[type=text] {
-  width: 300px;
+  width: 400px;
+  padding: 2px;
   border-radius: 5px;
   font-family: monospace;
 }
@@ -93,14 +218,14 @@ input[type=text] {
 .input-text-area {
   height: 150px;
   border-radius: 10px;
-  width: 300px;
+  width: 400px;
 }
 
 .loading-bar {
   border-radius: 10px;
   border: 1px solid #FDFDFD;
   height: 30px;
-  width: 300px;
+  width: 400px;
   display: flex;
   justify-content: stretch;
 }
@@ -118,14 +243,18 @@ input[type=text] {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  width: 300px;
-  height: 150px;
+  width: 400px;
+  max-height: 250px;
 }
 
 .data-tags {
   display: flex;
   align-items: center;
-  max-width: 300px;
+  max-width: 400px;
+  flex-wrap: wrap;
+  overflow: scroll;
+  max-height: 200px;
+
 }
 
 .data-tag {
@@ -134,6 +263,11 @@ input[type=text] {
   padding: 2px;
   border-radius: 5px;
   margin: 2px;
+}
+
+.data-tag:hover {
+  border: 1px solid rgba(201, 66, 77, 0.60);
+  color: rgba(201, 66, 77, 0.60);
 }
 
 .form-text-mute {

@@ -1,26 +1,46 @@
+import '../../styles/App.css';
 import { useForm } from "react-hook-form";
+import { inputFields } from "../../data/form";
+import FileInput from "./FileInput";
+import TextAreaInput from "./TextAreaInput";
 
 const Input = ({setTrainingInputs}) => {
-  const { register, handleSubmit } = useForm();
-  // const [formData, setFormData] = useState({})
+  const { register, handleSubmit, watch } = useForm();
+  const uploadedFile = watch("file");
+  const title = watch("title");
+  const formReady = uploadedFile && title;
   
   const onSubmit = data => {
-    console.log(data)
     setTrainingInputs(data)
   };
 
-  const qDefault="End use of the questions:\r\nThe end use of these questions will be to train a Q&A Language Model on the information in the provided document.\r\n\r\nDesired question tone:\r\nWhen generating these questions you should try to mimic how real human users might ask them. \r\n\r\nExamples of good questions: \r\nExample Question 1 \r\nExample Question 2"
-  const aDefault="End use of the answers:\r\nThe end use of these answers will be to train a Q&A Language Model on the information in the provided document.\r\n\r\nDesired answer tone:\r\nWhen generating these answers you should try to mimic how real human users might answer. \r\n\r\nExamples of good answers: \r\nExample Answer 1 \r\nExample Answer 2"
-    
+  const formInputs = inputFields.map((field, i) => {
+    if (field.type === "textarea") {
+      return (
+        <TextAreaInput key={i} data={field} register={register}/>
+      );
+    } else if (field.type === "file") {
+      return (
+        <FileInput key={i} data={field} register={register} file={uploadedFile}/>
+      );
+    } else {
+      return (
+        <input
+          key={i}
+          type={field.type}
+          required={field.required}
+          className={field.className}
+          {...register(field.registerName)}
+          placeholder={field.placeholder}
+        />
+      );
+    }
+  })
+
   return (
     <form className="input-form" onSubmit={handleSubmit(onSubmit)}>
-      <input required className="input-text" {...register("title")} type="text" placeholder="TITLE"/>
-      <input required  className="input-file" {...register("file")} type="file" />
-      <label className="form-input-label">QUESTION PROMPT</label>
-      <textarea required  className="input-text-area" {...register("questionPrompt")} value={qDefault}/>
-      <label className="form-input-label">ANSWER PROMPT</label>
-      <textarea required  className="input-text-area" {...register("answerPrompt")} value={aDefault}/>
-      <input type="submit"/>
+     {formInputs}
+      <input disabled={!formReady} className={(formReady ? "red-active-button" : "red-disabled-button") + " button"} type="submit" value="GENERATE TRAINING SET"/>
     </form>
   );
 }

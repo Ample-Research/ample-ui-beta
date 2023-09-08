@@ -5,7 +5,11 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: 
+      - opened
+      - synchronize
+      - reopened
+      - closed
     branches:
       - main
 
@@ -15,9 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           submodules: true
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -25,12 +31,22 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_SMOKE_05963F110 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+        env:
+          REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+          REACT_APP_FIREBASE_AUTH_DOMAIN: "ample-ai.firebaseapp.com"
+          REACT_APP_FIREBASE_PROJECT_ID: "ample-ai"
+          REACT_APP_FIREBASE_STORAGE_BUCKET: "ample-ai.appspot.com"
+          REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+          REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
+          REACT_APP_FIREBASE_APP_ID: ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
+          REACT_APP_AZURE_FUNCTIONS_BASE_ENDPOINT: "https://ample-files-to-qa.azurewebsites.net/api/"
+          REACT_APP_INITIATE_FILE_PROCESSING_ENDPOINT: 'INITIATE_FILE_PROCESSING'
+          REACT_APP_INITIATE_FILE_PROCESSING_CODE: ${{ secrets.REACT_APP_INITIATE_FILE_PROCESSING_CODE }}
+          REACT_APP_CHECK_TASK_STATUS_ENDPOINT: "CHECK_TASK_STATUS"
+          REACT_APP_CHECK_TASK_STATUS_CODE: ${{ secrets.REACT_APP_CHECK_TASK_STATUS_CODE }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
