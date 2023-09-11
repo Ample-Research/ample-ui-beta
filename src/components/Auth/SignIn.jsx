@@ -3,7 +3,8 @@ import firebase from 'firebase/compat/app';
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
 import { useEffect } from 'react';
-import auth from './AuthService';
+// import auth from './AuthService';
+import { auth } from '../../utils/firebaseConfig';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {

@@ -1,5 +1,4 @@
 export const formatFileSize = (rawSize) => {
-    console.log('size in bytes', rawSize)
     if(rawSize >= 1000000) {
         return (rawSize / 1000000).toFixed(1) + 'mb'
     } else {

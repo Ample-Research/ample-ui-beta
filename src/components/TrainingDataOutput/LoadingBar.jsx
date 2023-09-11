@@ -1,14 +1,28 @@
+import { useEffect, useState } from 'react';
 import '../../styles/App.css';
+import isEmpty from 'lodash/isEmpty';
 
-const  LoadingBar = ({sections}) => {
-    const numCompletedSections = sections.filter(s => s === 'completed').length
+const  LoadingBar = ({taskInfo}) => {
 
-    
+    const [sectionsComplete, setSectionsComplete] = useState(0)
+    const [sections, setSections] = useState([])
+
+    useEffect(() => {
+        const sectionValues = isEmpty(taskInfo?.section_tracker) ? [] : Object.values(taskInfo.section_tracker);
+        const numCompletedSections = sectionValues.filter(s => s === 'completed').length
+        setSections(sectionValues)
+        setSectionsComplete(numCompletedSections)
+    }, [taskInfo])
+
+    useEffect(()=>{
+
+    }, [sections, sectionsComplete])
+
     const barSections = sections.map((s,i) => {
         const first = i === 0;
         const last = i === sections.length - 1;
-        const sectionDone = i < numCompletedSections;
-        const incompleteTotal  = numCompletedSections < sections.length;
+        const sectionDone = i < sectionsComplete;
+        const incompleteTotal  = sectionsComplete < sections.length;
 
         return (
         <div key={'section-' + i} 

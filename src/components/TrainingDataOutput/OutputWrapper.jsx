@@ -4,12 +4,13 @@ import Error from './Error';
 import StatusImage from './StatusImage';
 import OutputDisplay from './OutputDisplay';
 import { useTaskInfo } from '../../hooks/useTaskInfo';
-import isEmpty from 'lodash/isEmpty';
 
-const OutputWrapper = ({ trainingInputs, setTrainingInputs }) => {
-    const [taskInfo, setTaskInfo, error] = useTaskInfo(trainingInputs);
+const OutputWrapper = ({ storedTask, setStoredTask, trainingInputs, setTrainingInputs}) => {
+    const [taskInfo, setTaskInfo, error] = useTaskInfo(trainingInputs, storedTask, setStoredTask);
 
     const clear = () => {
+        localStorage.removeItem('lastTask');
+        setStoredTask({});
         setTaskInfo({});
         setTrainingInputs({});
     };
@@ -18,15 +19,18 @@ const OutputWrapper = ({ trainingInputs, setTrainingInputs }) => {
         return <Error clear={clear} />;
     }
 
-    const statusText = taskInfo.status === "completed" ? "TRAINING DATA COMPLETE" : "GENERATING DATA ...";
-    const loadingBarSections = isEmpty(taskInfo.section_tracker) ? [] : Object.values(taskInfo.section_tracker);
+    const statusText = taskInfo.status === "completed" ? "TRAINING DATA COMPLETE" : "LOADING ...";
   
     return (
         <div className="container-content">
+          <div className="loading-info">
             <StatusImage status={taskInfo.status} />
             <h3>{statusText}</h3>
-            {taskInfo.status && taskInfo.status !== 'completed' && <LoadingBar sections={loadingBarSections} />}
-            {taskInfo.status === 'completed' && <OutputDisplay taskInfo={taskInfo} clear={clear} />}
+            {taskInfo.status !== 'completed' && <LoadingBar taskInfo={taskInfo} />}
+          </div>
+            {taskInfo.status === 'completed' && Object.keys(taskInfo).length > 10 && 
+              <OutputDisplay taskInfo={taskInfo} clear={clear} />
+            }
         </div>
     );
 }

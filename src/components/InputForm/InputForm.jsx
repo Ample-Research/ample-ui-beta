@@ -4,14 +4,16 @@ import { inputFields } from "../../data/form";
 import FileInput from "./FileInput";
 import TextAreaInput from "./TextAreaInput";
 
-const Input = ({setTrainingInputs}) => {
+const Input = ({setStoredTask, setTrainingInputs}) => {
   const { register, handleSubmit, watch } = useForm();
   const uploadedFile = watch("file");
   const title = watch("title");
   const formReady = uploadedFile && title;
   
   const onSubmit = data => {
-    setTrainingInputs(data)
+    localStorage.removeItem('lastTask');
+    setStoredTask({});
+    setTrainingInputs(data);
   };
 
   const formInputs = inputFields.map((field, i) => {
