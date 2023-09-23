@@ -5,7 +5,6 @@ import { formatFileSize } from '../../utils/dataTransformations';
 
 const  FileInput = ({data, register, file}) => {
 
-
     return (
         <div className="file-input-section">
             <label className="upload-btn-wrapper">

@@ -28,7 +28,6 @@ export const getTasksForUser = async (userId) => {
     try {
         const userRef = firestore.collection('users').doc(userId);
         const tasksCollection = userRef.collection('tasks');
-
         const snapshot = await tasksCollection.get();
         const tasks = snapshot.docs.map(doc => doc.data());
         return tasks;

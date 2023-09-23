@@ -4,7 +4,7 @@ import Container from '../Layout/Container';
 
 const ProtectedComponent = ({user}) => {
   if (user) {
-    return <Container loggedIn={true}/>;
+    return <Container user={user} loggedIn={true}/>;
   } else {
     return <SignUp />;
   }
