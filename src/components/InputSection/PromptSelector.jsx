@@ -2,7 +2,7 @@ import React from 'react';
 import PromptDropdown from './PromptDropdown';
 
 const promptConfig = {
-  'Q&A': ['custom_prompt_q', 'custom_prompt_a'],
+  'QA': ['custom_prompt_q', 'custom_prompt_a'],
   'CHAT': ['chat_prompt_1', 'chat_prompt_2', 'chat_prompt_3'],
 };
 

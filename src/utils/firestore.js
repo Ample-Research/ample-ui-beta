@@ -10,7 +10,10 @@ export const addTaskToUser = async (userId, data, task_id) => {
         await tasksCollection.doc(task_id).set({
             task_id: task_id,
             title: data.title,
-            date_created: currentDate,
+            status: "initiated",
+            completion_percentage: 0,
+            date_created: currentDate.toString(),
+            error_message: "",
         });
         console.log(`Task ${task_id} added successfully`);
     } catch (error) {
@@ -50,10 +53,16 @@ export const updateTaskForUser = async (userId, task) => {
     try {
         const userRef = firestore.collection('users').doc(userId);
         const taskRef = userRef.collection('tasks').doc(task.task_id);
-
+        let error_update = ""
+        if (task.error_message) {
+            error_update = task.error_message
+        }
         await taskRef.update({
-            error_message: task.error_message,
-            status: task.status
+            error_message: error_update,
+            status: task.status,
+            completion_percentage: task.completion_percentage,
+            date_created: task.date_created,
+            download_link: task.download_link
         });
 
         console.log('Task updated successfully');

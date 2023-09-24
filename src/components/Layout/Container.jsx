@@ -10,7 +10,7 @@ const  Container = ({user}) => {
     const { userHistory, isLoading, error, reload } = useUserHistory(user.uid);
     const { uploadNewTask } = useTaskUpload(user.uid);
 
-    const handleFormSubmit = async (data) => { // Fires w/ data from InputSection
+    const handleFormSubmit = async (data) => { // Data from <InputSection>
       const task_id = await uploadNewTask(data); 
       console.log(task_id) 
       await reload()

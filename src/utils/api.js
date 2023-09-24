@@ -47,6 +47,9 @@ function timeout(duration) {
 }
 
 export const checkTaskStatus = async (taskId, userId, maxRetries = 3) => {
+
+  console.log(taskId)
+
   let endpoint = new URL(baseURL + v.REACT_APP_CHECK_TASK_STATUS_ENDPOINT);
   const params = {
       code: v.REACT_APP_CHECK_TASK_STATUS_CODE,
