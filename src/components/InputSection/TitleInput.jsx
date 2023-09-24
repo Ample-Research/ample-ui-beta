@@ -1,8 +1,14 @@
 import React from 'react';
 
-const TitleInput = () => {
+const TitleInput = ({ register }) => {
   return (
-    <input type="text" placeholder="Title" />
+    <input 
+      type="text" 
+      className="title-input"
+      placeholder="Title"
+      required={true}
+      {...register('title')} 
+    />
   );
 };
 

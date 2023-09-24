@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TypeSelector = ({ setTaskType }) => {
+const TypeSelector = ({ register }) => {
   return (
-    <div>
-      <button onClick={() => setTaskType("Q&A")}>Q&A</button>
-      <button onClick={() => setTaskType("CHAT")}>CHAT</button>
-    </div>
+    <select required={true} defaultValue="Q&A" {...register('task_type')}>
+      <option value="Q&A">Q&A</option>
+      <option value="CHAT" disabled>CHAT</option>
+    </select>
   );
 };
 

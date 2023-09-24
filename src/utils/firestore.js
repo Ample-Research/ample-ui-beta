@@ -1,23 +1,18 @@
 import { firestore } from './firebaseConfig';  // adjust the import based on your Firebase configuration file
-  // userUID is the UID from Firebase Authentication
+// userUID is the UID from Firebase Authentication
 // const firestore = getFirestore(firebaseApp);
 
-export const addTaskToUser = async (userId, task) => {
+export const addTaskToUser = async (userId, data, task_id) => {
     try {
         const userRef = firestore.collection('users').doc(userId);
         const tasksCollection = userRef.collection('tasks');
-
-        await tasksCollection.doc(task.task_id).set({
-            task_id: task.task_id,
-            title: task.title,
-            filename: task.filename,
-            file_size_in_bytes: task.file_size_in_bytes,
-            date_created: task.date_created,
-            error_message: task.error_message,
-            status: task.status
+        const currentDate = new Date();
+        await tasksCollection.doc(task_id).set({
+            task_id: task_id,
+            title: data.title,
+            date_created: currentDate,
         });
-
-        console.log('Task added successfully');
+        console.log(`Task ${task_id} added successfully`);
     } catch (error) {
         console.error('Error adding task:', error);
     }

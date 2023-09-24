@@ -8,18 +8,16 @@ export const initiateFileProcessing = async (data, userId) => {
   
   const jsonPayload = {
     user_id: userId,
-    title: data.title,
     model_name: "qa-gpt-35-4k-context",
     start_sequence: "\n\n###\n\n",
     stop_sequence: "###",
-    task_type: "QA",
-    custom_prompt_q: data.question_prompt,
-    custom_prompt_a: data.answer_prompt,
+    ...data // title, task_type, & relevant prompts
   };
 
   formData.append('data', JSON.stringify(jsonPayload));
 
   const endpoint = baseURL + v.REACT_APP_INITIATE_FILE_PROCESSING_ENDPOINT + '?code=' + v.REACT_APP_INITIATE_FILE_PROCESSING_CODE
+  
   try {
     console.log('initiate API CALL')
     const response = await fetch(endpoint, {
@@ -34,6 +32,7 @@ export const initiateFileProcessing = async (data, userId) => {
 
     const responseData = await response.json();
     return responseData
+    
   } catch (error) {
     console.error("There was an error initiating file processing:", error);
   }
