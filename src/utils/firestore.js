@@ -1,23 +1,21 @@
 import { firestore } from './firebaseConfig';  // adjust the import based on your Firebase configuration file
-  // userUID is the UID from Firebase Authentication
+// userUID is the UID from Firebase Authentication
 // const firestore = getFirestore(firebaseApp);
 
-export const addTaskToUser = async (userId, task) => {
+export const addTaskToUser = async (userId, data, task_id) => {
     try {
         const userRef = firestore.collection('users').doc(userId);
         const tasksCollection = userRef.collection('tasks');
-
-        await tasksCollection.doc(task.task_id).set({
-            task_id: task.task_id,
-            title: task.title,
-            filename: task.filename,
-            file_size_in_bytes: task.file_size_in_bytes,
-            date_created: task.date_created,
-            error_message: task.error_message,
-            status: task.status
+        const currentDate = new Date();
+        await tasksCollection.doc(task_id).set({
+            task_id: task_id,
+            title: data.title,
+            status: "initiated",
+            completion_percentage: 0,
+            date_created: currentDate.toString(),
+            error_message: "",
         });
-
-        console.log('Task added successfully');
+        console.log(`Task ${task_id} added successfully`);
     } catch (error) {
         console.error('Error adding task:', error);
     }
@@ -28,7 +26,6 @@ export const getTasksForUser = async (userId) => {
     try {
         const userRef = firestore.collection('users').doc(userId);
         const tasksCollection = userRef.collection('tasks');
-
         const snapshot = await tasksCollection.get();
         const tasks = snapshot.docs.map(doc => doc.data());
         return tasks;
@@ -56,10 +53,16 @@ export const updateTaskForUser = async (userId, task) => {
     try {
         const userRef = firestore.collection('users').doc(userId);
         const taskRef = userRef.collection('tasks').doc(task.task_id);
-
+        let error_update = ""
+        if (task.error_message) {
+            error_update = task.error_message
+        }
         await taskRef.update({
-            error_message: task.error_message,
-            status: task.status
+            error_message: error_update,
+            status: task.status,
+            completion_percentage: task.completion_percentage,
+            date_created: task.date_created,
+            download_link: task.download_link
         });
 
         console.log('Task updated successfully');
