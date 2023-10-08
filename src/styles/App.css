@@ -106,12 +106,15 @@ body {
   width: 100%;
   display: block;
   margin: 5% auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-all; 
 }
 
 #file-input-label-filename {
   margin: 5% auto;
   font-size: 8px;
-  width: 80%;
+  width: 50%;
   display: block;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -165,12 +168,10 @@ body {
 }
 
 /* PromptSelector */
-
 .prompt-selector-box-container {
   width: 80%;
   margin: 15px auto;
 }
-
 
 .prompt-selector-box {
   border-radius: 2px;
@@ -198,8 +199,83 @@ body {
   line-height: normal;
 }
 
-/* History Section */
+/* Prompt Modal Code */
+.prompt-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 33, 33, 0.80);
+  z-index: 1000;
+}
 
+.prompt-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  width: 30%;
+  height: 70%;
+  z-index: 1001;
+  overflow: auto;
+  border-radius: 2px;
+  border: 0.2px solid rgba(254, 255, 254, 0.50);
+  background: #1E1E1E;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  padding: 10px;
+  border-bottom: 0.2px solid rgba(254, 255, 254, 0.50);
+  color: rgb(253, 253, 253);
+}
+
+.modal-body {
+  font-size: 12px;
+  padding: 10px;
+  color: rgb(253, 253, 253);
+  font-family: Helvetica, sans-serif !important;
+}
+
+.modal-textarea {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #DD334B;
+  background-color: #454754;
+  color: #FFFFFF;
+  border-radius: 2px;
+  padding: 10px;
+  margin-bottom: 10px;
+  resize: none; /* Disables resizable behavior */
+  overflow-y: auto; /* Enables vertical scrolling */
+  line-height: 1.5; /* Adjust line-height for better readability */
+  font-size: 12px; /* Adjust font size */
+  font-family: "IBM Plex Mono", monospace;
+  box-sizing: border-box; /* Makes sure padding is included in total width */
+  box-shadow: 0px 4px 10px 0px rgba(221, 51, 75, 0.20);
+}
+
+.modal-footer {
+  padding: 10px;
+  border-top: 0.2px solid rgba(254, 255, 254, 0.50);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-button {
+  margin-right: 10px;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: white;
+}
+
+
+
+/* History Section */
 .history-section-container {
   width: 100%;
   max-width: 1500px;
@@ -310,9 +386,22 @@ body {
   right: 5px;
   margin: 0;
 }
+
 .svg-download {
-  width: 10px;
-  height: 10px;
+  width: 25px;
+  height: 25px;
+  stroke-width: 0.1;
+}
+
+.svg-stroke-download {
+  stroke-width: 0.1;
+}
+
+@media screen and (max-width: 800px) {
+  .svg-download {
+    width: 15px; /* Adjust as needed */
+    height: 15px; /* Adjust as needed */
+  }
 }
 
 @media screen and (min-width: 1500px) {

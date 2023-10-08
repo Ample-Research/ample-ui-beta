@@ -14,7 +14,7 @@ const TaskCard = ({ data }) => {
         )
       )}
       {data.download_link && 
-        <a className="task-card-download" href={data.download_link} target="_blank" rel="noopener noreferrer">
+        <a className="task-card-download" href={data.download_link} rel="noopener noreferrer">
           <DownloadSVG />
         </a>
       }

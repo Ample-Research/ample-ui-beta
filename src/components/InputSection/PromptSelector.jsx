@@ -19,9 +19,13 @@ const PromptSelector = ({ register }) => {
   };
 
   return (
-    <div className='prompt-selector-box-container'>
+    <div className={`prompt-selector-box-container ${isModalOpen ? 'blur-background' : ''}`}>
       <div className='prompt-selector-box' onClick={() => setIsModalOpen(true)}>Edit Prompts</div>
-      {isModalOpen && <PromptModal onSubmit={handleModalSubmit} initialPrompts={prompts} />}
+      {isModalOpen && (
+        <div className="prompt-modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <PromptModal onSubmit={handleModalSubmit} initialPrompts={prompts} closeModal={() => setIsModalOpen(false)} />
+        </div>
+      )}
       <input type="hidden" {...register('custom_prompt_q')} value={prompts.questionPrompt} />
       <input type="hidden" {...register('custom_prompt_a')} value={prompts.answerPrompt} />
     </div>

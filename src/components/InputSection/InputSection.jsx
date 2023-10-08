@@ -6,12 +6,13 @@ import TypeSelector from './TypeSelector';
 import PromptSelector from './PromptSelector';
 
 const InputSection = ({ handleFormSubmit, user }) => { 
-  const { register, handleSubmit, watch } = useForm();
+  const { register, handleSubmit, watch, reset } = useForm();
   const uploadedFile = watch("file");
 
   const onSubmit = (data) => {
     console.log(data)
     handleFormSubmit(data);
+    reset()
   };
 
   return (
