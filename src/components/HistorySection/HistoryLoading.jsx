@@ -1,5 +1,5 @@
 const HistoryLoading = () => {
-  return <div>Loading...</div>;
+  return <div className="history-loading">Loading...</div>;
 };
 
 export default HistoryLoading;

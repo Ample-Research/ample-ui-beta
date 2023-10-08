@@ -1,11 +1,24 @@
+import { DownloadSVG } from '../../icons/download';
+
 const TaskCard = ({ data }) => {
   return (
     <div className="task-card">
-      <h3>{data.title}</h3>
-      <p>Status: {data.status}</p>
-      <p>Completion: {Math.round(data.completion_percentage * 100)}%</p>
-      <p>Date Created: {new Date(data.date_created).toLocaleDateString()}</p>
-      {data.download_link && <a href={data.download_link} target="_blank" rel="noopener noreferrer">DOWNLOAD RESULTS</a>}
+      <h3 className="task-card-title">{data.title}</h3>
+      {data.status === "complete" ? (
+        <p className="task-card-status">Complete</p>
+      ) : (
+      data.error ? (
+        <p className="task-card-status">Error</p>
+        ) : (
+        <p className="task-card-completion">{Math.round(data.completion_percentage * 100)}%</p>
+        )
+      )}
+      {data.download_link && 
+        <a className="task-card-download" href={data.download_link} rel="noopener noreferrer">
+          <DownloadSVG />
+        </a>
+      }
+      <p className="task-card-date">{new Date(data.date_created).toLocaleDateString()}</p>
     </div>
   );
 };

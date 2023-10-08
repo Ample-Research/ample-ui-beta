@@ -11,12 +11,14 @@ const HistorySection = ({ userHistory, isLoading, error }) => {
   );
 
   return (
-    <div className="history-section">
+    <>
       <SearchBar setSearchTerm={setSearchTerm} />
-      {isLoading && <HistoryLoading />}
-      {error && <HistoryError error={error} />}
-      {!isLoading && !error && <HistoryGrid tasks={filteredHistory} />}
-    </div>
+      <div className="history-section">
+        {isLoading && <HistoryLoading />}
+        {error && <HistoryError error={error} />}
+        {!isLoading && !error && <HistoryGrid tasks={filteredHistory} />}
+      </div>
+    </>
   );
 };
 

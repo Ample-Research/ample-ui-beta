@@ -18,7 +18,7 @@ const useTaskUpload = (userId) => {
         throw err;
       }
     },
-    [fetchData, setError]
+    [fetchData, setError, userId]
   );
 
   return {

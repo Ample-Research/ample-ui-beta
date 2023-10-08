@@ -1,5 +1,5 @@
 import '../../styles/App.css'
-import logo from '../../assets/ample-logo.png'
+import logo from '../../assets/Dark-Mode-Logo.png'
 import { logout } from '../../utils/auth';
 
 const  Header = ({user}) => { // REFACTOR -- See wireframes: Socials, More Rich Hamburger Dropown
