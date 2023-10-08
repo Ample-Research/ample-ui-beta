@@ -15,7 +15,7 @@
         "react-transition-group": "^4.4.5"
     },
     "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "7.21.0-placeholder-for-preset-env.2",
+        "@babel/plugin-proposal-private-property-in-object": "^7.x.x",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/user-event": "^14.4.3",
         "react-scripts": "^5.0.1"
