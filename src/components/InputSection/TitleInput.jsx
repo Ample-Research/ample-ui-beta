@@ -5,7 +5,7 @@ const TitleInput = ({ register }) => {
     <input 
       type="text" 
       className="title-input"
-      placeholder="Title"
+      placeholder="Task Title"
       required={true}
       {...register('title')} 
     />

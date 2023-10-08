@@ -7,7 +7,7 @@ import PromptSelector from './PromptSelector';
 
 const InputSection = ({ handleFormSubmit, user }) => { 
   const { register, handleSubmit, watch } = useForm();
-  const taskType = watch('task_type');
+  const uploadedFile = watch("file");
 
   const onSubmit = (data) => {
     console.log(data)
@@ -15,14 +15,16 @@ const InputSection = ({ handleFormSubmit, user }) => {
   };
 
   return (
-    <form className="input-section" onSubmit={handleSubmit(onSubmit)}>
+    <form className="input-section-form" onSubmit={handleSubmit(onSubmit)}>
       <TitleInput register={register} />
       <div className="lower-form-section">
-        <FileInput register={register} />
+        <FileInput register={register} file={uploadedFile} />
         <TypeSelector register={register} />
-        <PromptSelector taskType={taskType} user={user} register={register} />
+        <div className="lower-right-form-section">
+          <PromptSelector register={register} />
+          <button className="begin-data-gen-btn" type="submit">Begin Data Extraction</button>
+        </div>
       </div>
-      <button className="begin-data-gen-btn" type="submit">Generate Data</button>
     </form>
   );
 };

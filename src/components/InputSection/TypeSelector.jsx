@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TypeSelector = ({ register }) => {
+  const [selectedType, setSelectedType] = useState('QA');
+
   return (
-    <select required={true} defaultValue="Q&A" {...register('task_type')}>
-      <option value="QA">Q&A</option>
-      <option value="CHAT" disabled>CHAT</option>
-    </select>
+    <div className="type-selector-box">
+      <div 
+        className={'selected type-selector-btn'} 
+      >
+        Completion (Q&A)
+      </div>
+      <div 
+        className={'disabled type-selector-btn'} 
+      >
+        Chat coming soon...
+      </div>
+      <input type="hidden" {...register('task_type')} value={selectedType} />
+    </div>
   );
 };
 

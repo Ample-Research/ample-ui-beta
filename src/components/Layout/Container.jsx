@@ -18,10 +18,10 @@ const  Container = ({user}) => {
 
     return (
     <article className="container">
-      <section className="input-section">
+      <section className="input-section-container">
         <InputSection handleFormSubmit={handleFormSubmit} user={user} />
       </section>
-      <section className="history-section">
+      <section className="history-section-container">
         <HistorySection userHistory={userHistory} isLoading={isLoading} error={error} />
       </section>
     </article>
