@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { getTasksForUser } from '../utils/firestore';
+import { getTasksForUser, deleteTaskForUser } from '../utils/firestore';
 import useTaskStatus from './useTaskStatus';
+
 
 const useUserHistory = (userId) => {
   const { fetchTaskStatus } = useTaskStatus(userId);
@@ -9,32 +10,41 @@ const useUserHistory = (userId) => {
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
-    console.log("Fetching User History....")
+    console.log("Fetching User History....");
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const history = await getTasksForUser(userId);
-
-      const tasksPromises = history.map(task => { // Fetch the status for tasks that are not complete.
-        if ((task.status !== 'complete' || !task.download_link || task.completion_percentage < 1)  && !task.error_message) {
-          return fetchTaskStatus(task.task_id)
-            .then(updatedTask => ({...task, ...updatedTask}))
-            .catch(err => {
-              console.error('Could not fetch status for task:', err);
-              return task;
-            });
-        }
-        return Promise.resolve(task);
-      });
-
-      const updatedHistory = await Promise.all(tasksPromises);
-
       setUserHistory(history);
       setIsLoading(false);
+      
+      // Fetch individual task details lazily
+      history.forEach(task => {
+        if ((task.status !== 'complete' || !task.download_link || task.completion_percentage < 1)  && !task.error_message) {
+          fetchSingleTask(task.task_id);
+        }
+      });
     } catch (err) {
       setError(err);
       setIsLoading(false);
-    } finally {
-      setIsLoading(false);
+    }
+  };
+
+  const fetchSingleTask = async (task_id) => {
+    console.log("Fetching Task....")
+    try {
+      const task_data = await fetchTaskStatus(task_id)
+      if (task_data) {
+        setUserHistory(prevState => {
+          const taskExists = prevState.some(task => task.task_id === task_data.task_id);
+          if (taskExists) {
+            return prevState.map(task => task.task_id === task_data.task_id ? task_data : task);
+          } else {
+            return [...prevState, task_data];
+          }
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -46,7 +56,7 @@ const useUserHistory = (userId) => {
     fetchData();
   }, []);
 
-  return { userHistory, isLoading, error, reload };
+  return { userHistory, isLoading, error, fetchSingleTask, reload };
 };
 
 export default useUserHistory;

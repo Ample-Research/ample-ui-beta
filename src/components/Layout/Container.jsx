@@ -7,13 +7,12 @@ import useTaskUpload from '../../hooks/useTaskUpload';
 import '../../styles/App.css';
 
 const  Container = ({user}) => {
-    const { userHistory, isLoading, error, reload } = useUserHistory(user.uid);
+    const { userHistory, isLoading, error, fetchSingleTask } = useUserHistory(user.uid);
     const { uploadNewTask } = useTaskUpload(user.uid);
 
     const handleFormSubmit = async (data) => { // Data from <InputSection>
       const task_id = await uploadNewTask(data); 
-      console.log(task_id) 
-      await reload()
+      const task_data  = await fetchSingleTask(task_id)
     }
 
     return (

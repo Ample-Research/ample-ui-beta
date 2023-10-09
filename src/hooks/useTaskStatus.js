@@ -5,7 +5,7 @@ import useApiRequest from './useApiRequest';
 
 
 const useTaskStatus = (userId) => {
-  const [fetchData, fetchingInProgress, error, setError] = useApiRequest();
+  const [fetchData, fetchingInProgress, error] = useApiRequest();
   
   const fetchTaskStatus = useCallback(
     async (taskId) => {
@@ -14,11 +14,10 @@ const useTaskStatus = (userId) => {
         await updateTaskForUser(userId, data);
         return data;
       } catch (err) {
-        setError(err);
-        throw err;
+        console.log(err)
       }
     },
-    [fetchData, setError, userId]
+    [fetchData, userId]
   );
 
   return {
