@@ -46,51 +46,35 @@ function timeout(duration) {
   });
 }
 
-export const checkTaskStatus = async (taskId, userId, maxRetries = 3) => {
-
-  console.log(taskId)
+export const checkTaskStatus = async (taskId, userId) => {
+  console.log(taskId);
 
   let endpoint = new URL(baseURL + v.REACT_APP_CHECK_TASK_STATUS_ENDPOINT);
   const params = {
-      code: v.REACT_APP_CHECK_TASK_STATUS_CODE,
-      task_id: taskId
+    code: v.REACT_APP_CHECK_TASK_STATUS_CODE,
+    task_id: taskId,
   };
   Object.keys(params).forEach(key => endpoint.searchParams.append(key, params[key]));
 
-  let retries = 0;
+  try {
+    console.log('check status API CALL');
+    
+    const response = await Promise.race([
+      fetch(endpoint),
+      timeout(30000)  // 30 seconds timeout
+    ]);
 
-  while (retries < maxRetries) {
-      try {
-          console.log('check status API CALL');
+    if (!response.ok) {
+      console.log("HERRRRREEEE");
+      console.log(response.body);
+      throw new Error(`something went wrong: Task: ${taskId} ${response}`);
+    }
 
-          const response = await Promise.race([
-              fetch(endpoint),
-              timeout(30000)  // 30 seconds timeout
-          ]);
+    const responseData = await response.json();
+    return responseData;
 
-          if (!response.ok) {
-              throw new Error(`something went wrong: ${response.status}`);
-          }
-
-          const responseData = await response.json();
-          return responseData;
-
-      } catch (error) {
-          console.error("There was an error checking task status:", error);
-
-          // If it's a timeout error, increment the retry counter, otherwise throw the error
-          if (error.message.includes("Request timed out")) {
-              retries++;
-              console.log(`Attempt ${retries} failed due to timeout. Retrying...`);
-              
-              if (retries === maxRetries) {
-                  throw new Error('Max retries exceeded for checkTaskStatus');
-              }
-          } else {
-              throw error;
-          }
-      }
+  } catch (error) {
+    console.error("There was an error checking task status:", error);
+    throw error;
   }
 };
-
-
